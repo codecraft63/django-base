@@ -1,55 +1,56 @@
 # Python imports
 from os.path import abspath, basename, dirname, join, normpath
-from pathlib import Path
 import sys
-
-# Use 12factor inspired environment variables or from a file
 import environ
 
+# ##### PATH CONFIGURATION ################################
+ROOT_DIR = environ.Path(__file__) - 4
+
+
+# load environment variables
 env = environ.Env()
 
-# Create a local.env file in the settings directory
+# Create a .env file in the project root directory
 # But ideally this env file should be outside the git repo
-env_file = Path(__file__).resolve().parent / "local.env"
+# OS environment variables take precedence over variables from .env
+env_file = ROOT_DIR.path(".env")
 if env_file.exists():
     environ.Env.read_env(str(env_file))
 
-# ##### PATH CONFIGURATION ################################
 
 # fetch Django's project directory
-DJANGO_ROOT = dirname(dirname(abspath(__file__)))
+DJANGO_ROOT = str(ROOT_DIR)
 
 # fetch the project_root
 PROJECT_ROOT = dirname(DJANGO_ROOT)
 
 # the name of the whole site
-SITE_NAME = basename(DJANGO_ROOT)
+SITE_NAME = env("SITE_NAME", basename(str(DJANGO_ROOT)))
 
 # collect static files here
-STATIC_ROOT = join(PROJECT_ROOT, 'run', 'static')
+STATIC_ROOT = str(ROOT_DIR('run', 'static'))
 
 # collect media files here
-MEDIA_ROOT = join(PROJECT_ROOT, 'run', 'media')
+MEDIA_ROOT = str(ROOT_DIR('run', 'media'))
 
 # look for static assets here
 STATICFILES_DIRS = [
-    join(PROJECT_ROOT, 'static'),
+    str(ROOT_DIR('static')),
 ]
 
 # look for templates here
 # This is an internal setting, used in the TEMPLATES directive
 PROJECT_TEMPLATES = [
-    join(PROJECT_ROOT, 'templates'),
+    str(ROOT_DIR('templates')),
 ]
 
 # add apps/ to the Python path
-sys.path.append(normpath(join(PROJECT_ROOT, 'apps')))
-
+sys.path.append(str(ROOT_DIR('apps')))
 
 # ##### APPLICATION CONFIGURATION #########################
 
 # these are the apps
-DEFAULT_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,6 +58,12 @@ DEFAULT_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+THIRD_PARTY_APPS = [
+    'rest_framework',
+]
+
+LOCAL_APPS = []
 
 # Middlewares
 MIDDLEWARE = [
@@ -120,4 +127,4 @@ MEDIA_URL = '/media/'
 
 
 # ##### DEBUG CONFIGURATION ###############################
-DEBUG = False
+DEBUG = env.bool("DJANGO_DEBUG", False)

@@ -1,1 +1,1 @@
-CUSTOM_APPS = ()
+LOCAL_APPS += []

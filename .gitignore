@@ -3,12 +3,15 @@
 __python__/*
 
 # do NOT track tox's testing folder
-.tox/
+/.tox/
 
 # do NOT track coverage files/folders
-.coverage
-coverage_html
+/.coverage
+/coverage_html
 
 # do NOT track compiled language files
 *.mo
 *.pot
+
+# do NOT track .env file
+/.env

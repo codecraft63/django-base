@@ -1,11 +1,12 @@
 # Python imports
 
 # project imports
-from .initializers.common import *
+from .initializers.base import *
 from .initializers.apps import CUSTOM_APPS
 
-# uncomment the following line to include i18n
-# from .initializers.i18n import *
+# uncomment the following line to include others settings
+# from .initializers.i18n import * # I18N Support
+# from .initializers.auth import * # Authentication Support
 
 
 # ##### DEBUG CONFIGURATION ###############################
@@ -28,11 +29,10 @@ MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
 
 # ##### DATABASE CONFIGURATION ############################
 DATABASES = {
-    # Raises ImproperlyConfigured exception if DATABASE_URL not in
-    # os.environ
     'default': env.db()
 }
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 # ##### APPLICATION CONFIGURATION #########################
 
-INSTALLED_APPS = DEFAULT_APPS + CUSTOM_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
