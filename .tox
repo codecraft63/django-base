@@ -1,0 +1,19 @@
+# tox configuration
+#
+# There is no real testing of a project skeleton, because there are no real
+# test-cases. Instead, the command 'python manage.py check' is issued.
+
+[tox]
+envlist = {py37}-django{21}
+
+# don't require a setup.py
+skipsdist = true
+
+# don't stop on missing interpreters
+skip_missing_interpreters = true
+
+
+[testenv]
+commands = {envbindir}/python manage.py check
+deps =
+    django21: Django>=2.1, <2.2
