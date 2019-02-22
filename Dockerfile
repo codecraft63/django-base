@@ -32,7 +32,7 @@ FROM python-3.7-alpine
 ARG STATIC_URL
 ENV STATIC_URL ${STATIC_URL:-/static/}
 
-RUN groupadd -r {{ project_name }} && useradd -r -g {{ project_name }} {{ project_name }}
+RUN groupadd -r app && useradd -r -g app app
 
 #RUN apk add --no-cache \
 #    && rm -rf /var/cache/apk/*
@@ -47,12 +47,12 @@ WORKDIR /app
 RUN SECRET_KEY=dummy STATIC_URL=${STATIC_URL} python3 manage.py collectstatic --no-input
 
 RUN mkdir -p /app/run/media /app/run/static \
-    && chown -R {{ project_name }}:{{ project_name }} /app/
+    && chown -R app:app /app/
 
 EXPOSE 8000
 ENV PORT 8000
 ENV PYTHONBUFFERED 1
 ENV PROCESSES 4
 
-CMD ["uwsgi", "--ini", "/app/{{ project_name }}/uwsgi.ini"]
+CMD ["uwsgi", "--ini", "/app/wsgi/uwsgi.ini"]
 
