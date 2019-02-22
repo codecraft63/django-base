@@ -54,5 +54,5 @@ ENV PORT 8000
 ENV PYTHONBUFFERED 1
 ENV PROCESSES 4
 
-CMD ["uwsgi", "--ini", "/app/wsgi/uwsgi.ini"]
+CMD ["uwsgi", "--ini", "/app/{{ project_name }}/wsgi/uwsgi.ini"]
 

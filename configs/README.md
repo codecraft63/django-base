@@ -1,3 +1,6 @@
+Configurations
+==============
+
 This folder is used to store configuration files.
 
 These files are used while developing or deploying your Django project,
