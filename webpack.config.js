@@ -58,7 +58,7 @@ module.exports = (env, argv) => {
             !/\.vue\.js/.test(file)
           )
         },
-        {test: /\.vue$/, loader: 'babel-loader'}, // to transform VUE into JS
+        {test: /\.vue$/, loader: 'vue-loader'}, // to transform VUE into JS
         {
           test: /\.scss$/,
           use: [
