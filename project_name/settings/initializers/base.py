@@ -111,10 +111,10 @@ MANAGERS = ADMINS
 # ##### DJANGO RUNNING CONFIGURATION ######################
 
 # the default WSGI application
-WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
+WSGI_APPLICATION = '%s.wsgi.application' % basename(str(DJANGO_ROOT))
 
 # the root URL configuration
-ROOT_URLCONF = '%s.urls' % SITE_NAME
+ROOT_URLCONF = '%s.urls' % basename(str(DJANGO_ROOT))
 
 # the URL for static files
 STATIC_URL = '/static/'
