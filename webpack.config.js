@@ -20,25 +20,21 @@ module.exports = (env, argv) => {
     output = {
       path: resolve('{{ project_name }}/static/assets/'),
       filename: "[name].[chunkhash].js",
-      chuckFilename: '[name].[chunkhash].js',
       publicPath: publicPath
     };
     fileLoaderPath = 'file-loader?name=[name].[hash].[ext]';
     extractCssPlugin = new MiniCssExtractPlugin({
       filename: '[name].[chunkhash].css',
-      chuckFilename: '[id].[chunkhash].css',
     })
   } else {
     output = {
       path: resolve('{{ project_name }}/static/assets/'),
       filename: '[name].js',
-      chuckFilename: '[name].js',
       publicPath: '/static/assets/'
     };
     fileLoaderPath = 'file-loader?name=[name].[ext]';
     extractCssPlugin = new MiniCssExtractPlugin({
       filename: '[name].css',
-      chuckFilename: '[name].css'
     });
   }
   ;
@@ -47,7 +43,7 @@ module.exports = (env, argv) => {
     context: __dirname,
 
     entry: {
-      main: './{{ project_name }}/static/js/main/index'
+      main: './{{ project_name }}/static/javascripts/main/index'
     },
 
     output: output,

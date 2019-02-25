@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "build-assets": "./node_modules/webpack/bin/webpack -p",
-    "start": "./node_modules/webpack/bin/webpack -d --watch"
+    "build-assets": "yarn run webpack -p",
+    "start": "webpack -d --watch --mode=development"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",
