@@ -3,6 +3,9 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
+[requires]
+python_version = "3.7"
+
 [dev-packages]
 django-debug-toolbar = ">=1.8"
 coverage = ">=4.5"
@@ -13,8 +16,8 @@ flake8 = ">=3.7"
 [packages]
 django = ">=2.0"
 django-environ = ">=0.4"
+django-webpack-loader = ">=0.6"
 djangorestframework = ">=3.9"
 
 
-[requires]
-python_version = "3.7"
+

@@ -26,7 +26,7 @@ WORKDIR /app
 RUN pipenv install --system --deploy --dev
 
 
-## Final image
+## Final images
 FROM python-3.7-alpine
 
 ARG STATIC_URL

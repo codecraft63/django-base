@@ -15,3 +15,9 @@ __python__/*
 
 # do NOT track .env file
 /.env
+
+# do NOT track yarn log file
+/yarn-error.log
+
+# dot NOT track node_modules directory
+/node_modules

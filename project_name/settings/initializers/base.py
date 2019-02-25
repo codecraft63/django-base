@@ -1,11 +1,10 @@
 # Python imports
-from os.path import abspath, basename, dirname, join, normpath
+from os.path import basename, dirname
 import sys
 import environ
 
 # ##### PATH CONFIGURATION ################################
 ROOT_DIR = environ.Path(__file__) - 4
-
 
 # load environment variables
 env = environ.Env()
@@ -51,12 +50,11 @@ sys.path.append(str(ROOT_DIR('apps')))
 
 # these are the apps
 DJANGO_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
 ]
 
 THIRD_PARTY_APPS = [
@@ -71,7 +69,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
