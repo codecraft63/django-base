@@ -20,6 +20,7 @@ all:
 	@echo "  flake8       Runs flake8 to check for PEP8 compliance"
 	@echo "                 = flake / lint"
 	@echo "  migrate      Applies all migrations"
+	@echo "  build-assets Generate the assets using webpack"
 	@echo "  refresh      Refreshes the project by migrating the apps and"
 	@echo "                 collecting static assets"
 	@echo "  refresh/dev  Refreshes with development settings"
@@ -84,6 +85,9 @@ test/prod:
 migrate: ensure_virtual_env
 	$(PYTHON_BIN)/django-admin.py migrate $(DJANGO_TEST_POSTFIX)
 
+build-assets:
+	yarn build-assets
+
 # sets up the development environment by installing required dependencies,
 #	migrates the apps and creates a dummy user (django::django)
 setup/dev: ensure_virtual_env
@@ -95,6 +99,7 @@ setup/dev: ensure_virtual_env
 refresh: ensure_virtual_env
 	$(MAKE) clean
 	$(MAKE) migrate
+	$(MAKE) build-assets
 	$(PYTHON_BIN)/django-admin.py collectstatic --noinput $(DJANGO_TEST_POSTFIX)
 
 # refreshes with development settings

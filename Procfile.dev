@@ -1,0 +1,2 @@
+django: python manage.py runserver --settings={{ project_name }}.settings.development
+webpack: yarn start

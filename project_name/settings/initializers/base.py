@@ -14,37 +14,37 @@ env = environ.Env()
 # OS environment variables take precedence over variables from .env
 env_file = ROOT_DIR.path(".env")
 if env_file.exists():
-    environ.Env.read_env(str(env_file))
+    environ.Env.read_env(env_file.root)
 
 
 # fetch Django's project directory
-DJANGO_ROOT = str(ROOT_DIR)
+DJANGO_ROOT = ROOT_DIR.root
 
 # fetch the project_root
 PROJECT_ROOT = dirname(DJANGO_ROOT)
 
 # the name of the whole site
-SITE_NAME = env("SITE_NAME", basename(str(DJANGO_ROOT)))
+SITE_NAME = env("SITE_NAME", basename(DJANGO_ROOT))
 
 # collect static files here
-STATIC_ROOT = str(ROOT_DIR('run', 'static'))
+STATIC_ROOT = ROOT_DIR('run', 'static')
 
 # collect media files here
-MEDIA_ROOT = str(ROOT_DIR('run', 'media'))
+MEDIA_ROOT = ROOT_DIR('run', 'media')
 
 # look for static assets here
 STATICFILES_DIRS = [
-    str(ROOT_DIR('static')),
+    ROOT_DIR('static'),
 ]
 
 # look for templates here
 # This is an internal setting, used in the TEMPLATES directive
 PROJECT_TEMPLATES = [
-    str(ROOT_DIR('templates')),
+    ROOT_DIR('templates'),
 ]
 
 # add apps/ to the Python path
-sys.path.append(str(ROOT_DIR('apps')))
+sys.path.append(ROOT_DIR('apps'))
 
 # ##### APPLICATION CONFIGURATION #########################
 
@@ -57,9 +57,7 @@ DJANGO_APPS = [
     'django.contrib.admin',
 ]
 
-THIRD_PARTY_APPS = [
-    'rest_framework',
-]
+THIRD_PARTY_APPS = []
 
 LOCAL_APPS = []
 
