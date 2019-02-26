@@ -25,3 +25,18 @@ __python__/*
 # do NOT track webpack tracking file and compiled assets
 /static/webpack-stats.json
 /static/assets/
+
+# editors and others
+.vscode/
+.cache
+.coverage*
+*.env
+*.ini
+*.pyc
+*.sublime-*
+*.sqlite3
+*.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db

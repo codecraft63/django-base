@@ -1,6 +1,10 @@
 Translations
 ============
 
-Translations will be placed in this folder when running::
+### Translations will be placed in this folder
 
-    python manage.py makemessage
+**To create .po file**
+`$ ./manage.py makemessage`
+
+**To compile .mo file**
+`$ ./manage.py compilemessage`

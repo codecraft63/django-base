@@ -1,4 +1,5 @@
-import Vue from 'vue/dist/vue.esm';
+import '../../scss/_base.scss';
+import Vue from 'vue/dist/vue.esm.js';
 import { sync } from 'vuex-router-sync'
 
 import store from '../store'
@@ -10,7 +11,7 @@ import HomeApp from './home.vue';
 
 document.addEventListener('DOMContentLoaded', () => {
    const app = new Vue({
-       el: '#app',
+       el: '#main_app',
        store,
        components: {
            HomeApp

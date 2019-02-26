@@ -8,7 +8,7 @@
     module.exports = {
         name: 'Home',
         data: () => {
-            return { message: "Hello Vue!!!" }
+            return { message: "{{ project_name }}" }
         }
     }
 </script>

@@ -46,7 +46,7 @@ module.exports = (env, argv) => {
         context: __dirname,
 
         entry: {
-            main: './{{ project_name }}/static/javascripts/main/index'
+            main: './{{ project_name }}/static/js/main/index'
         },
 
         output: output,
@@ -116,7 +116,7 @@ module.exports = (env, argv) => {
                                     require('precss')
                                 ]
                             }
-                        }
+                        },
                         {
                             loader: 'sass-loader',
                             options: {sourceMap: true}
@@ -128,8 +128,8 @@ module.exports = (env, argv) => {
                     loader: fileLoaderPath,
                     include: [
                         resolve('node_modules'),
-                        resolve('{{ project_name }}/static/fonts'),
-                        resolve('{{ project_name }}/static/images')
+                        resolve('{{ project_name }}/static/font'),
+                        resolve('{{ project_name }}/static/img')
                     ]
                 }
             ],
@@ -149,7 +149,7 @@ module.exports = (env, argv) => {
                 jQuery: 'jquery',
                 'widow.jQuery': 'jquery',
                 Popper: 'popper.js',
-                Vue: 'vue/dist/vue.esm.js'
+                Vue: 'vue/dist/vue.esm.js',
                 vue: 'vue/dist/vue.esm.js'
             })
         ],

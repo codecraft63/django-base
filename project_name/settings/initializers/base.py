@@ -13,8 +13,15 @@ env = environ.Env()
 # But ideally this env file should be outside the git repo
 # OS environment variables take precedence over variables from .env
 env_file = ROOT_DIR.path(".env")
-if env_file.exists():
-    environ.Env.read_env(env_file.root)
+try:
+    if ROOT_DIR.file(env_file):
+        environ.Env.read_env(env_file.root)
+except OSError as e:
+    if e.errno == errno.ENOENT:
+        # Fail silently
+        sys.stdout.write("You should have a .env file in the project root folder!\n")
+    else:
+        raise
 
 
 # fetch Django's project directory
@@ -24,7 +31,7 @@ DJANGO_ROOT = ROOT_DIR.root
 PROJECT_ROOT = dirname(DJANGO_ROOT)
 
 # the name of the whole site
-SITE_NAME = env("SITE_NAME", basename(DJANGO_ROOT))
+SITE_NAME = env("SITE_NAME", default=basename(DJANGO_ROOT))
 
 # collect static files here
 STATIC_ROOT = ROOT_DIR('run', 'static')
@@ -67,6 +74,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
