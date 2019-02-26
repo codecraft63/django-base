@@ -8,6 +8,8 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const resolve = path.resolve.bind(path, __dirname);
 
+
+
 module.exports = (env, argv) => {
     const devMode = argv.mode !== 'production';
 
@@ -106,16 +108,19 @@ module.exports = (env, argv) => {
                             }
                         },
                         {
-                            loader: 'sass-loader',
-                            options: {sourceMap: true}
-                        },
-                        {
                             loader: "postcss-loader",
                             options: {
                                 sourceMap: true,
-                                plugins: [autoprefixer]
+                                plugins: [
+                                    autoprefixer,
+                                    require('precss')
+                                ]
                             }
                         }
+                        {
+                            loader: 'sass-loader',
+                            options: {sourceMap: true}
+                        },
                     ]
                 },
                 {
@@ -141,16 +146,18 @@ module.exports = (env, argv) => {
             new BundleTracker({filename: './static/webpack-stats.json'}),
             new webpack.ProvidePlugin({
                 $: 'jquery',
-                JQuery: 'jquery',
-                Vue: 'vue/dist/vue.esm'
+                jQuery: 'jquery',
+                'widow.jQuery': 'jquery',
+                Popper: 'popper.js',
+                Vue: 'vue/dist/vue.esm.js'
+                vue: 'vue/dist/vue.esm.js'
             })
         ],
 
         resolve: {
             alias: {
-                Vue: resolve('node_modules/vue/dist/vue.esm.js')
-            },
-            extensions: ['.vue', '.js', '.jsx']
+                vue: 'vue/dist/vue.esm.js'
+            }
         },
 
         devtool: "sourceMap"
