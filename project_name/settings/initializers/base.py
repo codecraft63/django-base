@@ -14,7 +14,6 @@ env = environ.Env()
 # OS environment variables take precedence over variables from .env
 environ.Env.read_env()
 
-
 # fetch Django's project directory
 DJANGO_ROOT = ROOT_DIR.root
 
@@ -41,13 +40,14 @@ PROJECT_TEMPLATES = [
     ROOT_DIR('templates'),
 ]
 
-# add apps/ to the Python path
-sys.path.append(ROOT_DIR('apps'))
+# add vendors/ to the Python path
+sys.path.append(ROOT_DIR('vendors'))
 
 # ##### APPLICATION CONFIGURATION #########################
 
 # these are the apps
 DJANGO_APPS = [
+    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -65,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -92,6 +93,11 @@ TEMPLATES = [
 # Internationalization
 USE_I18N = False
 
+# adjust the minimal login
+LOGIN_URL = 'core_login'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = 'core_login'
+
 
 # ##### SECURITY CONFIGURATION ############################
 
@@ -102,6 +108,17 @@ ADMINS = (
     ('your name', 'your_name@example.com'),
 )
 MANAGERS = ADMINS
+
+# validates passwords (very low security, but hey...)
+# AUTH_PASSWORD_VALIDATORS = [
+#    { 'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
+#    { 'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
+#    { 'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
+#    { 'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
+# ]
+
+# how many days a password reset should work. I'd say even one day is too long
+# PASSWORD_RESET_TIMEOUT_DAYS = 1
 
 
 # ##### DJANGO RUNNING CONFIGURATION ######################

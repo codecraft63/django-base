@@ -7,7 +7,6 @@ from .initializers.apps import LOCAL_APPS
 
 # uncomment the following line to include others settings
 # from .initializers.i18n import * # I18N Support
-from .initializers.auth import * # Authentication Support
 # from .initializers.rest_framework import * # Django Rest Framework Support
 from .initializers.debug import * # Debug Toolbar Support
 from .initializers.webpack import * # Webpack + VueJS Support

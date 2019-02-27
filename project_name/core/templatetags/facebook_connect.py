@@ -7,10 +7,7 @@ def get_facebook_app_id():
 
 @register.inclusion_tag('utils/facebook_connect.html')
 def facebook_connect_tag():
-    try:
-        return {'id': get_facebook_app_id()}
-    except:
-        return {}
+    return {'id': get_facebook_app_id()}
 
 
 
