@@ -13,7 +13,7 @@ from .core import urls as core_urls
 urlpatterns = [
     # Examples:
     # url(r'^blog/', include('blog.urls', namespace='blog')),
-    url(r'^/?', include(core_urls, namespace='core')),
+    url(r'^', include(core_urls, namespace='core')),
 ]
 
 # User-uploaded files like profile pics need to be served in development
