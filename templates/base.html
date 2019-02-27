@@ -1,6 +1,6 @@
 {% templatetag openblock %} load render_bundle from webpack_loader {% templatetag closeblock %}
 
-{% load static %}
+{% templatetag openblock %} load static {% templatetag closeblock %}
 <!doctype html>
 
 <html lang="en">
@@ -22,15 +22,15 @@
     <meta name="theme-color" content="#0f1317" />
 
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.png' %}" sizes="64x64" />
-    <link rel="icon" type="image/png" href="{% static 'images/icons/favicon-128.png' %}" sizes="128x128" />
-    <link rel="icon" type="image/png" href="{% static 'images/icons/favicon-192.png' %}" sizes="192x192" />
-    <link rel="icon" type="image/png" href="{% static 'images/icons/favicon-256.png' %}" sizes="256x256" />
-    <link rel="apple-touch-icon" href="{% static 'images/icons/favicon-128.png' %}" sizes="128x128">
-    <link rel="apple-touch-icon" href="{% static 'images/icons/favicon-192.png' %}" sizes="192x192">
-    <link rel="apple-touch-icon" href="{% static 'images/icons/favicon-256.png' %}" sizes="256x256">
-    <link rel="shortcut icon" href="{% static 'images/icons/favicon-128.png' %}" sizes="128x128" >
-    <link rel="shortcut icon" href="{% static 'images/icons/favicon-192.png' %}" sizes="192x192" >
+    <link rel="icon" type="image/png" href="{% templatetag openblock %} static 'images/icons/favicon.png' {% templatetag closeblock %}" sizes="64x64" />
+    <link rel="icon" type="image/png" href="{% templatetag openblock %} static 'images/icons/favicon-128.png' {% templatetag closeblock %}" sizes="128x128" />
+    <link rel="icon" type="image/png" href="{% templatetag openblock %} static 'images/icons/favicon-192.png' {% templatetag closeblock %}" sizes="192x192" />
+    <link rel="icon" type="image/png" href="{% templatetag openblock %} static 'images/icons/favicon-256.png' {% templatetag closeblock %}" sizes="256x256" />
+    <link rel="apple-touch-icon" href="{% templatetag openblock %} static 'images/icons/favicon-128.png' {% templatetag closeblock %}" sizes="128x128">
+    <link rel="apple-touch-icon" href="{% templatetag openblock %} static 'images/icons/favicon-192.png' {% templatetag closeblock %}" sizes="192x192">
+    <link rel="apple-touch-icon" href="{% templatetag openblock %} static 'images/icons/favicon-256.png' {% templatetag closeblock %}" sizes="256x256">
+    <link rel="shortcut icon" href="{% templatetag openblock %} static 'images/icons/favicon-128.png' {% templatetag closeblock %}" sizes="128x128" >
+    <link rel="shortcut icon" href="{% templatetag openblock %} static 'images/icons/favicon-192.png' {% templatetag closeblock %}" sizes="192x192" >
 
     <!--[if lt IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -39,7 +39,7 @@
 <body>
 
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-{{ GTM_ID }}"
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-{% templatetag openvariable %} GTM_ID {% templatetag closevariable %}"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
@@ -52,19 +52,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-{% block js_body %}
-{% endblock %}
+{% templatetag openblock %} block js_body {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
 <div id="main_app">
     <!-- [[ debug_message ]] -->
-    {% block content %}
-    {% endblock content %}
+    {% templatetag openblock %} block content {% templatetag closeblock %}
+    {% templatetag openblock %} endblock content {% templatetag closeblock %}
 </div>
 
-{% block js_footer %}
-{% endblock %}
+{% templatetag openblock %} block js_footer {% templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}
 
-{% render_bundle 'main' %}
+{% templatetag openblock %} render_bundle 'main' {% templatetag closeblock %}
 
 </body>
 </html>
