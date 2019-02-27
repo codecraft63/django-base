@@ -24,10 +24,10 @@ PROJECT_ROOT = dirname(DJANGO_ROOT)
 SITE_NAME = env("SITE_NAME", default=basename(DJANGO_ROOT))
 
 # collect static files here
-STATIC_ROOT = ROOT_DIR('run', 'static')
+STATIC_ROOT = ROOT_DIR('static')
 
 # collect media files here
-MEDIA_ROOT = ROOT_DIR('run', 'media')
+MEDIA_ROOT = ROOT_DIR('media')
 
 # look for static assets here
 STATICFILES_DIRS = [

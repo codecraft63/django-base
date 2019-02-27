@@ -8,6 +8,7 @@ from .initializers.apps import LOCAL_APPS
 # uncomment the following line to include others settings
 # from .initializers.i18n import * # I18N Support
 # from .initializers.rest_framework import * # Django Rest Framework Support
+# from .initializers.thumbnails import * # Django thumbnails utils
 from .initializers.webpack import * # Webpack + VueJS Support
 
 

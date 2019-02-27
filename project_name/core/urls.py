@@ -9,9 +9,8 @@ app_name = 'core'
 urlpatterns = [
     url(r'^$', views.home, name='home'),
 
-# provide the most basic login/logout functionality
-    url(r'^login/$', auth_views.LoginView.as_view(),
-        {'template_name': 'core/login.html'}, name='core_login'),
+    # provide the most basic login/logout functionality
+    url(r'^login/$', auth_views.LoginView.as_view(), name='core_login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='core_logout'),
 
     # enable the admin interface
