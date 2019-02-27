@@ -1,11 +1,11 @@
 {% templatetag openblock %} load render_bundle from webpack_loader {% templatetag closeblock %}
-
+{% templatetag openblock %}load gtm facebook_connect {% templatetag closeblock %}
 {% templatetag openblock %} load static {% templatetag closeblock %}
 <!doctype html>
 
 <html lang="en">
 <head>
-    {% templatetag openblock %} gtm_tag {% templatetag closeblock %}
+    {% templatetag openblock %} gtm {% templatetag closeblock %}
 
     <meta charset="utf-8">
     <title>{{ project_name }}</title>
@@ -29,7 +29,7 @@
     {% templatetag openblock %} render_bundle 'main' 'css' {% templatetag closeblock %}
 </head>
 <body>
-{% templatetag openblock %} gtm_noscript_tag {% templatetag closeblock %}
+{% templatetag openblock %} gtm noscript=True {% templatetag closeblock %}
 
 <div id="main_app">
     {% templatetag openblock %} block content {% templatetag closeblock %}
@@ -40,6 +40,6 @@
 {% templatetag openblock %} endblock {% templatetag closeblock %}
 
 {% templatetag openblock %} render_bundle 'main' 'js' {% templatetag closeblock %}
-{% templatetag openblock %} facebook_connect_tag {% templatetag closeblock %}
+{% templatetag openblock %} facebook_connect {% templatetag closeblock %}
 </body>
 </html>

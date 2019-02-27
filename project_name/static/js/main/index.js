@@ -1,5 +1,3 @@
-
-
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
 import { sync } from 'vuex-router-sync'
@@ -11,7 +9,7 @@ import router from '../router';
 
 sync(store, router);
 
-import "../../scss/theme/basic"
+import "../../scss/theme/basic.scss"
 import HomeApp from './home.vue';
 
 document.addEventListener('DOMContentLoaded', () => {

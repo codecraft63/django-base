@@ -1,6 +1,7 @@
 from .base import THIRD_PARTY_APPS
 
-THIRD_PARTY_APPS.append('rest_framework', 'rest_framework.authtoken')
+THIRD_PARTY_APPS.append('rest_framework')
+THIRD_PARTY_APPS.append('rest_framework.authtoken')
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

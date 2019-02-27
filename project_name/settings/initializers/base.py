@@ -12,7 +12,9 @@ env = environ.Env()
 # Create a .env file in the project root directory
 # But ideally this env file should be outside the git repo
 # OS environment variables take precedence over variables from .env
-environ.Env.read_env()
+env_file = ROOT_DIR('.env')
+if exists(env_file):
+    environ.Env.read_env(env_file)
 
 # fetch Django's project directory
 DJANGO_ROOT = ROOT_DIR.root
@@ -23,11 +25,15 @@ PROJECT_ROOT = dirname(DJANGO_ROOT)
 # the name of the whole site
 SITE_NAME = env("SITE_NAME", default=basename(DJANGO_ROOT))
 
+# social apps IDs
+GTM_ID = env('GTM_ID', default='')
+FACEBOOK_ID = env('FACEBOOK_ID', default='')
+
 # collect static files here
-STATIC_ROOT = ROOT_DIR('static')
+STATIC_ROOT = ROOT_DIR('_static_collected')
 
 # collect media files here
-MEDIA_ROOT = ROOT_DIR('media')
+MEDIA_ROOT = ROOT_DIR('_media')
 
 # look for static assets here
 STATICFILES_DIRS = [

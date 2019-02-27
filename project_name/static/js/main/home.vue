@@ -1,6 +1,6 @@
 <template>
     <div id="home-app">
-        <p>[[ message ]]</p>
+        <p>{% templatetag openvariable %} message {% templatetag closevariable %} </p>
     </div>
 </template>
 

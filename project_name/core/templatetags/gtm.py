@@ -1,17 +1,16 @@
-from django import template, settings
+from django import template
+from django.conf import settings
+
 
 register = template.Library()
 
 
 def get_gtm_id():
-    return settings.env('GTM_ID', default=False)
-
+    return settings.GTM_ID
 
 @register.inclusion_tag('utils/gtm.html')
-def gtm_tag():
-    return {'id': get_gtm_id()}
-
-
-@register.inclusion_tag('utils/gtm-noscript.html')
-def gtm_noscript_tag:
-    return {'id': get_gtm_id()}
+def gtm(noscript=False):
+    return {
+        'noscript': noscript,
+        'gtm_id': get_gtm_id()
+    }
