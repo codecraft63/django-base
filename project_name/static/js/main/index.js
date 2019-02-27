@@ -10,11 +10,12 @@ sync(store, router);
 import HomeApp from './home.vue';
 
 document.addEventListener('DOMContentLoaded', () => {
-   const app = new Vue({
-       el: '#main_app',
-       store,
-       components: {
-           HomeApp
-       }
+    const app = new Vue({
+        delimiters: ['[[', ']]'],
+        el: '#main_app',
+        store,
+        components: {
+            HomeApp
+        }
    })
 });

@@ -1,6 +1,6 @@
 <template>
     <div id="home-app">
-        <p>{{ message }}</p>
+        <p>[[ message ]]</p>
     </div>
 </template>
 
