@@ -1,5 +1,5 @@
 # Python imports
-from os.path import basename, dirname
+from os.path import basename, dirname, exists
 import sys
 import environ
 
@@ -12,16 +12,7 @@ env = environ.Env()
 # Create a .env file in the project root directory
 # But ideally this env file should be outside the git repo
 # OS environment variables take precedence over variables from .env
-env_file = ROOT_DIR.path(".env")
-try:
-    if ROOT_DIR.file(env_file):
-        environ.Env.read_env(env_file.root)
-except OSError as e:
-    if e.errno == errno.ENOENT:
-        # Fail silently
-        sys.stdout.write("You should have a .env file in the project root folder!\n")
-    else:
-        raise
+environ.Env.read_env()
 
 
 # fetch Django's project directory
@@ -74,7 +65,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]

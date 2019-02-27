@@ -1,5 +1,6 @@
-import '../../scss/_base.scss';
-import Vue from 'vue/dist/vue.esm.js';
+import "../../scss/theme/basic"
+
+import Vue from 'vue';
 import { sync } from 'vuex-router-sync'
 
 import store from '../store'
