@@ -8,7 +8,7 @@
     module.exports = {
         name: 'Home',
         data: () => {
-            return { message: "{{ project_name }}" }
+            return { message: "{{ project_name|title }}, project!" }
         }
     }
 </script>
