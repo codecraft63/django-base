@@ -8,6 +8,7 @@ from django.conf import settings
 from django.conf.urls import include, url, re_path
 from django.conf.urls.static import static
 
+from project_name.settings.initializers import admin
 from .core import urls as core_urls
 
 urlpatterns = [
