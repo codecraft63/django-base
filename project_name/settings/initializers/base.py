@@ -24,6 +24,7 @@ PROJECT_ROOT = dirname(DJANGO_ROOT)
 
 # the name of the whole site
 SITE_NAME = env("SITE_NAME", default=basename(DJANGO_ROOT))
+SITE_ID = 1
 
 # social apps IDs
 GTM_ID = env('GTM_ID', default='')
@@ -54,11 +55,12 @@ sys.path.append(ROOT_DIR('vendors'))
 # these are the apps
 DJANGO_APPS = [
     'django.contrib.auth',
+    'django.contrib.admin',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.admin',
 ]
 
 THIRD_PARTY_APPS = []
@@ -85,6 +87,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.request',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.i18n',
                 'django.template.context_processors.media',

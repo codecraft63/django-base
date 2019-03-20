@@ -3,7 +3,8 @@
 # project imports
 from .initializers.base import *
 from .initializers.database import *
-from .initializers.apps import LOCAL_APPS
+from .initializers.admin import *
+from .project_apps import LOCAL_APPS
 
 # uncomment the following line to include others settings
 # from .initializers.i18n import * # I18N Support
