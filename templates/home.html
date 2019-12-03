@@ -1,5 +1,5 @@
-{% templatetag openblock %} extends "base.html" {% templatetag closeblock %}
+{% extends "base.html" %}
 
-{% templatetag openblock %} block content {% templatetag closeblock %}
-<home-app></home-app>
-{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% block content %}
+  <home-app></home-app>
+{% endblock %}

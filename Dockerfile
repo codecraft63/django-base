@@ -1,7 +1,7 @@
 ## Build and install packages
 FROM python:3.7-alpine as build-python
 
-RUN apk add --no-cache /
+RUN apk add --update --no-cache \
     build-base \
     tzdata \
     ca-certificates \
@@ -18,41 +18,64 @@ RUN apk add --no-cache /
 	zlib-dev \
     postgresql-client \
     postgresql-dev \
+    nodejs \
+    yarn \
     && rm -rf /var/cache/apk/*
 
-RUN pip install --no-cache-dir --upgrade -q pip pipenv
-COPY Pipfile Pipfile.lock /app/
+RUN mkdir -p /app
 WORKDIR /app
-RUN pipenv install --system --deploy --dev
+
+COPY . /app
+
+COPY Pipfile Pipfile.lock /app/
+COPY package.json yarn.lock /app/
+
+RUN pip install --no-cache-dir --upgrade -q pip pipenv psycopg2
+RUN pipenv install --system --dev
+RUN yarn install --non-interactive --no-progress --ignore-optional
 
 
 ## Final images
-FROM python-3.7-alpine
+FROM python:3.7-alpine
+
+MAINTAINER Codecraft Team <team@codecraft63.com>
+
+ENV LANG C.UTF-8
+
+RUN apk add --update --no-cache \
+  nodejs \
+  yarn \
+  postgresql-client \
+  ca-certificates \
+  tzdata \
+  gettext \
+  && rm -rf /var/cache/apk/*
 
 ARG STATIC_URL
-ENV STATIC_URL ${STATIC_URL:-/static/}
+ENV STATIC_URL ${STATIC_URL:-/app/public/}
 
-RUN groupadd -r app && useradd -r -g app app
-
-#RUN apk add --no-cache \
-#    && rm -rf /var/cache/apk/*
-
-COPY . /app
-COPY --from=build-python /usr/local/lib/python3.7/site-packages/ /usr/local/lib/python3.7/site-packages/
-COPY --from=build-python /usr/local/bin/ /usr/local/bin/
-COPY --from=build-python /app/static /app/static
-COPY --from=build-python /app/template /app/templates
+RUN mkdir -p /app
 WORKDIR /app
 
-RUN SECRET_KEY=dummy STATIC_URL=${STATIC_URL} python3 manage.py collectstatic --no-input
+COPY --from=build-python /usr/local/lib/python3.7/site-packages/ /usr/local/lib/python3.7/site-packages/
+COPY --from=build-python /usr/local/bin/ /usr/local/bin/
+COPY --from=build-python /app/ /app/
 
-RUN mkdir -p /app/run/media /app/run/static \
-    && chown -R app:app /app/
+ENV SECRET_KEY=dummy
+ENV DATABASE_URL=sqlite:///database.sqlite3
+ENV CACHE_URL=dummycache://
+ENV REDIS_URL=rediscache://127.0.0.1:6379/1
+ENV EMAIL_URL=dummymail://
+
+RUN pwd
+RUN STATIC_URL=${STATIC_URL} python manage.py collectstatic --no-input
+
+RUN mkdir -p /app/run/media /app/run/static
 
 EXPOSE 8000
 ENV PORT 8000
 ENV PYTHONBUFFERED 1
 ENV PROCESSES 4
 
-CMD ["uwsgi", "--ini", "/app/{{ project_name }}/wsgi/uwsgi.ini"]
+CMD ["uwsgi", "--ini", "/app/settings/wsgi/uwsgi.ini"]
 

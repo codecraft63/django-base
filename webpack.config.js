@@ -18,10 +18,10 @@ module.exports = (env, argv) => {
     let output;
 
     if (!devMode) {
-        const baseStaticPath = process.env.STATIC_URL || '/static/';
+        const baseStaticPath = process.env.STATIC_URL || '/public/';
         const publicPath = url.resolve(baseStaticPath, 'assets/');
         output = {
-            path: resolve('{{ project_name }}/static/assets/'),
+            path: resolve('public/assets/'),
             filename: "[name].[chunkhash].js",
             publicPath: publicPath
         };
@@ -31,9 +31,9 @@ module.exports = (env, argv) => {
         })
     } else {
         output = {
-            path: resolve('static/assets/'),
+            path: resolve('public/assets/'),
             filename: '[name].js',
-            publicPath: '/static/assets/'
+            publicPath: '/public/assets/'
         };
         fileLoaderPath = 'file-loader?name=[name].[ext]';
         extractCssPlugin = new MiniCssExtractPlugin({
@@ -43,10 +43,14 @@ module.exports = (env, argv) => {
     ;
 
     return {
+        watchOptions: {
+            aggregateTimeout: 300,
+            poll: 1000
+        },
         context: __dirname,
 
         entry: {
-            main: './{{ project_name }}/static/js/main/index'
+            main: './static/js/main/index'
         },
 
         output: output,

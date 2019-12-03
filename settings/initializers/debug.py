@@ -1,6 +1,6 @@
-from .base import LOCAL_APPS, MIDDLEWARE
+from .base import THIRD_PARTY_APPS, MIDDLEWARE
 
-LOCAL_APPS += (
+THIRD_PARTY_APPS += (
     "debug_toolbar",
 )
 

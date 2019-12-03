@@ -1,45 +1,51 @@
-{% templatetag openblock %} load render_bundle from webpack_loader {% templatetag closeblock %}
-{% templatetag openblock %}load gtm facebook_connect {% templatetag closeblock %}
-{% templatetag openblock %} load static {% templatetag closeblock %}
+{% load render_bundle from webpack_loader %}
+{% load gtm facebook_connect %}
+{% load i18n static %}
+{% get_current_language as LANGUAGE_CODE %}
 <!doctype html>
-
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
-    {% templatetag openblock %} gtm {% templatetag closeblock %}
+  {% gtm %}
 
-    <meta charset="utf-8">
-    <title>{{ project_name }}</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <title>{% block site_title %}Django Project{% endblock site_title %}</title>
+  <meta name="description" content="{% block site_description %}Django Project!{% endblock %}">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="{{ project_name }} django project!">
-    <meta name="theme-color" content="#0f1317" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" type="image/png" href="{% templatetag openblock %} static 'images/icons/favicon.png' {% templatetag closeblock %}" sizes="64x64" />
-    <link rel="icon" type="image/png" href="{% templatetag openblock %} static 'images/icons/favicon-128.png' {% templatetag closeblock %}" sizes="128x128" />
-    <link rel="icon" type="image/png" href="{% templatetag openblock %} static 'images/icons/favicon-192.png' {% templatetag closeblock %}" sizes="192x192" />
-    <link rel="icon" type="image/png" href="{% templatetag openblock %} static 'images/icons/favicon-256.png' {% templatetag closeblock %}" sizes="256x256" />
-    <link rel="apple-touch-icon" href="{% templatetag openblock %} static 'images/icons/favicon-128.png' {% templatetag closeblock %}" sizes="128x128">
-    <link rel="apple-touch-icon" href="{% templatetag openblock %} static 'images/icons/favicon-192.png' {% templatetag closeblock %}" sizes="192x192">
-    <link rel="apple-touch-icon" href="{% templatetag openblock %} static 'images/icons/favicon-256.png' {% templatetag closeblock %}" sizes="256x256">
-    <link rel="shortcut icon" href="{% templatetag openblock %} static 'images/icons/favicon-128.png' {% templatetag closeblock %}" sizes="128x128" >
-    <link rel="shortcut icon" href="{% templatetag openblock %} static 'images/icons/favicon-192.png' {% templatetag closeblock %}" sizes="192x192" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" type="image/png"
+        href="{% static 'images/icons/favicon.png' %}"
+        sizes="64x64"/>
+  <link rel="icon" type="image/png"
+        href="{% static 'images/icons/favicon-128.png' %}"
+        sizes="128x128"/>
+  <link rel="icon" type="image/png"
+        href="{% static 'images/icons/favicon-192.png' %}"
+        sizes="192x192"/>
+  <link rel="icon" type="image/png"
+        href="{% static 'images/icons/favicon-256.png' %}"
+        sizes="256x256"/>
 
-    {% templatetag openblock %} render_bundle 'main' 'css' {% templatetag closeblock %}
+  {% block opengraph %}{% endblock %}
+
+  {% block styles %}
+    {% render_bundle 'main' 'css' %}
+  {% endblock %}
 </head>
 <body>
-{% templatetag openblock %} gtm noscript=True {% templatetag closeblock %}
+{% gtm noscript=True %}
 
 <div id="main_app">
-    {% templatetag openblock %} block content {% templatetag closeblock %}
-    {% templatetag openblock %} endblock content {% templatetag closeblock %}
+  {% block content %}
+  {% endblock content %}
 </div>
 
-{% templatetag openblock %} block scripts {% templatetag closeblock %}
-{% templatetag openblock %} endblock {% templatetag closeblock %}
-
-{% templatetag openblock %} render_bundle 'main' 'js' {% templatetag closeblock %}
-{% templatetag openblock %} facebook_connect {% templatetag closeblock %}
+{% block scripts %}
+  {% render_bundle 'main' 'js' %}
+  {% facebook_connect %}
+{% endblock %}
 </body>
 </html>

@@ -1,6 +1,6 @@
 <template>
     <div id="home-app">
-        <p>{% templatetag openvariable %} message {% templatetag closevariable %} </p>
+        <p>{{ message }}</p>
     </div>
 </template>
 
@@ -8,7 +8,7 @@
     module.exports = {
         name: 'Home',
         data: () => {
-            return { message: "{{ project_name|title }}, project!" }
+            return { message: "Hello, welcome to your new project!" }
         }
     }
 </script>

@@ -4,7 +4,7 @@ import sys
 import environ
 
 # ##### PATH CONFIGURATION ################################
-ROOT_DIR = environ.Path(__file__) - 4
+ROOT_DIR = environ.Path(__file__) - 3
 
 # load environment variables
 env = environ.Env()
@@ -31,14 +31,15 @@ GTM_ID = env('GTM_ID', default='')
 FACEBOOK_ID = env('FACEBOOK_ID', default='')
 
 # collect static files here
-STATIC_ROOT = ROOT_DIR('_static_collected')
+STATIC_ROOT = ROOT_DIR('run', 'static')
 
 # collect media files here
-MEDIA_ROOT = ROOT_DIR('_media')
+MEDIA_ROOT = ROOT_DIR('run', 'media')
 
 # look for static assets here
 STATICFILES_DIRS = [
-    ROOT_DIR('static'),
+    ROOT_DIR('public'),
+    ROOT_DIR('vendors', 'static'),
 ]
 
 # look for templates here
@@ -52,7 +53,6 @@ sys.path.append(ROOT_DIR('vendors'))
 
 # ##### APPLICATION CONFIGURATION #########################
 
-# these are the apps
 DJANGO_APPS = [
     'django.contrib.auth',
     'django.contrib.admin',
@@ -64,8 +64,6 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = []
-
-LOCAL_APPS = []
 
 # Middlewares
 MIDDLEWARE = [
@@ -99,15 +97,6 @@ TEMPLATES = [
     },
 ]
 
-# Internationalization
-USE_I18N = False
-
-# adjust the minimal login
-LOGIN_URL = 'core_login'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = 'core_login'
-
-
 # ##### SECURITY CONFIGURATION ############################
 
 SECRET_KEY = env("SECRET_KEY")
@@ -128,21 +117,6 @@ MANAGERS = ADMINS
 
 # how many days a password reset should work. I'd say even one day is too long
 # PASSWORD_RESET_TIMEOUT_DAYS = 1
-
-
-# ##### DJANGO RUNNING CONFIGURATION ######################
-
-# the default WSGI application
-WSGI_APPLICATION = '%s.wsgi.application' % basename(str(DJANGO_ROOT))
-
-# the root URL configuration
-ROOT_URLCONF = '%s.urls' % basename(str(DJANGO_ROOT))
-
-# the URL for static files
-STATIC_URL = '/static/'
-
-# the URL for media files
-MEDIA_URL = '/media/'
 
 
 # ##### DEBUG CONFIGURATION ###############################

@@ -9,6 +9,9 @@ __python__/*
 /.coverage
 /coverage_html
 
+# dot NOT track configs files without .sample
+!/configs/*.sample
+
 # do NOT track compiled language files
 *.mo
 *.pot
@@ -23,8 +26,8 @@ __python__/*
 /node_modules
 
 # do NOT track webpack tracking file and compiled assets
-/static/webpack-stats.json
-/static/assets/
+/public/webpack-stats.json
+/public/assets/
 
 # editors and others
 .vscode/

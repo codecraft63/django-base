@@ -1,0 +1,52 @@
+version: '3'
+services:
+    app:
+        image: "django_app"
+        build:
+            context: .
+            dockerfile: "Dockerfile"
+        command: "python manage.py runserver 0.0.0.0:8000"
+        environment:
+          DATABASE_URL: psql://postgres:password@db/app
+        env_file:
+            - "./.env"
+        volumes:
+            - ".:/app"
+            - "packages:/usr/local/lib/python3.7/site-packages/"
+        ports:
+            - "8000:8000"
+        depends_on:
+          - db
+          - webpack
+
+    webpack:
+        image: "django_app"
+        command: "yarn start"
+        volumes:
+            - ".:/app"
+        tty: false
+        stdin_open: false
+
+    db:
+        image: "postgres:alpine"
+        environment:
+            - "POSTGRES_USER=postgres"
+            - "POSTGRES_PASSWORD=password"
+        volumes:
+            - "db:/var/liv/postgresql/data"
+        ports:
+            - "5432:5432"
+
+    redis:
+        image: "redis:5-alpine"
+        volumes:
+            - "redis-data:/data"
+
+
+volumes:
+    db:
+        driver: local
+    redis-data:
+        driver: local
+    packages:
+        driver: local
