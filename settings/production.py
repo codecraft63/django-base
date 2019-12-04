@@ -1,9 +1,5 @@
 from .environment import *
 
-# uncomment the following line to include others settings
-# from .initializers.rest_framework import * # Django Rest Framework Support
-# from .initializers.thumbnails import * # Django thumbnails utils
-
 # ##### DEBUG CONFIGURATION ###############################
 DEBUG = False
 DATABASE_DEBUG = False
@@ -24,3 +20,5 @@ SESSION_COOKIE_AGE = 1209600
 
 # the email address, these error notifications to admins come from
 # SERVER_EMAIL = 'root@localhost'
+
+from .application import *

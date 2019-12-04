@@ -1,4 +1,4 @@
-from .initializers import *
+from .system import *
 from .application import *
 
 # ##### APPLICATION CONFIGURATION #########################
@@ -14,7 +14,7 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 ROOT_URLCONF = 'app.urls'
 
 # the URL for static files
-STATIC_URL = '/public/'
+STATIC_URL = '/static/'
 
 # the URL for media files
 MEDIA_URL = '/media/'

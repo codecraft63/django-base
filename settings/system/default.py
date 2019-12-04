@@ -1,6 +1,7 @@
 # Python imports
-from os.path import basename, dirname, exists
 import sys
+from os.path import basename, dirname, exists
+
 import environ
 
 # ##### PATH CONFIGURATION ################################
@@ -31,14 +32,14 @@ GTM_ID = env('GTM_ID', default='')
 FACEBOOK_ID = env('FACEBOOK_ID', default='')
 
 # collect static files here
-STATIC_ROOT = ROOT_DIR('run', 'static')
+STATIC_ROOT = ROOT_DIR('public', 'static')
 
 # collect media files here
-MEDIA_ROOT = ROOT_DIR('run', 'media')
+MEDIA_ROOT = ROOT_DIR('public', 'media')
 
 # look for static assets here
 STATICFILES_DIRS = [
-    ROOT_DIR('public'),
+    ROOT_DIR('static'),
     ROOT_DIR('vendors', 'static'),
 ]
 
@@ -54,8 +55,6 @@ sys.path.append(ROOT_DIR('vendors'))
 # ##### APPLICATION CONFIGURATION #########################
 
 DJANGO_APPS = [
-    'django.contrib.auth',
-    'django.contrib.admin',
     'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -71,7 +70,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -84,7 +82,6 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.request',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.i18n',
@@ -101,12 +98,6 @@ TEMPLATES = [
 
 SECRET_KEY = env("SECRET_KEY")
 
-# these persons receive error notification
-ADMINS = (
-    ('your name', 'your_name@example.com'),
-)
-MANAGERS = ADMINS
-
 # validates passwords (very low security, but hey...)
 # AUTH_PASSWORD_VALIDATORS = [
 #    { 'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
@@ -121,3 +112,7 @@ MANAGERS = ADMINS
 
 # ##### DEBUG CONFIGURATION ###############################
 DEBUG = env.bool("DJANGO_DEBUG", False)
+
+
+AUTH_ENABLED = False
+ADMIN_ENABLED = False

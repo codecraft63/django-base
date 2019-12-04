@@ -1,4 +1,4 @@
-from settings.initializers.base import env
+from .default import env
 
 CACHES = {
     # read os.environ['CACHE_URL'] and raises ImproperlyConfigured exception if not found

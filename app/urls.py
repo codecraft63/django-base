@@ -5,24 +5,14 @@ The `urlpatterns` list routes URLs to views. For more information please see:
 
 # Django imports
 from django.conf import settings
-from django.conf.urls import include, re_path
-from django.conf.urls.static import static
-from django.contrib import admin
-from django.urls import path
+from django.conf.urls import include
+from django.urls import path, re_path
 
 from .core import urls as core_urls
 
 urlpatterns = [
-    # Examples:
-    # url(r'^blog/', include('blog.urls', namespace='blog')),
     path('', include(core_urls, namespace='core')),
-
-    # enable the admin interface
-    path('admin/', admin.site.urls),
 ]
-
-# User-uploaded files like profile pics need to be served in development
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Include django debug toolbar if DEBUG is on
 if settings.DEBUG:

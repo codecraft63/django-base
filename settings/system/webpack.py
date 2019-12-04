@@ -1,4 +1,4 @@
-from .base import ROOT_DIR, THIRD_PARTY_APPS, DEBUG
+from .default import ROOT_DIR, THIRD_PARTY_APPS, DEBUG
 
 THIRD_PARTY_APPS.append('webpack_loader')
 
