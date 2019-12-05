@@ -32,15 +32,14 @@ GTM_ID = env('GTM_ID', default='')
 FACEBOOK_ID = env('FACEBOOK_ID', default='')
 
 # collect static files here
-STATIC_ROOT = ROOT_DIR('public', 'static')
+STATIC_ROOT = ROOT_DIR('run', 'static')
 
 # collect media files here
-MEDIA_ROOT = ROOT_DIR('public', 'media')
+MEDIA_ROOT = ROOT_DIR('run', 'media')
 
 # look for static assets here
 STATICFILES_DIRS = [
-    ROOT_DIR('static'),
-    ROOT_DIR('vendors', 'static'),
+    ROOT_DIR('public', 'static')
 ]
 
 # look for templates here

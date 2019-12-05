@@ -1,4 +1,4 @@
-{% load render_bundle from webpack_loader %}
+{% load render_entrypoint render_bundle from webpack_loader %}
 {% load gtm facebook_connect %}
 {% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
@@ -32,19 +32,19 @@
   {% block opengraph %}{% endblock %}
 
   {% block styles %}
-    {% render_bundle 'main' 'css' %}
+    {% render_entrypoint 'main' 'css' %}
   {% endblock %}
 </head>
 <body>
 {% gtm noscript=True %}
 
-<div id="main_app">
+<div id="app">
   {% block content %}
   {% endblock content %}
 </div>
 
 {% block scripts %}
-  {% render_bundle 'main' 'js' %}
+  {% render_entrypoint 'main' 'js' %}
   {% facebook_connect %}
 {% endblock %}
 </body>

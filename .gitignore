@@ -26,8 +26,10 @@ __python__/*
 /node_modules
 
 # do NOT track webpack tracking file and compiled assets
-/public/webpack-stats.json
+/static/webpack-stats.json
 /public/assets/
+/public/static/
+/public/media/
 
 # editors and others
 .vscode/
