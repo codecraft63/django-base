@@ -17,10 +17,9 @@ const webpackConfig = merge(commonConfig, {
         chunkFilename: 'js/[id].chunk.js'
     },
     optimization: {
-        runtimeChunk: 'single',
-        splitChunks: {
-            chunks: 'all'
-        }
+        removeAvailableModules: false,
+        removeEmptyChunks: false,
+        splitChunks: false
     },
     plugins: [
         new webpack.EnvironmentPlugin(environment),

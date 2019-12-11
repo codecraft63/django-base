@@ -40,7 +40,7 @@ __python__/*
 *.pyc
 *.sublime-*
 *.sqlite3
-*.DS_Store
+*.DS_Storefear
 .AppleDouble
 .LSOverride
 Thumbs.db

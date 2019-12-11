@@ -1,4 +1,4 @@
-{% load render_entrypoint render_bundle from webpack_loader %}
+{% load render_bundle from webpack_loader %}
 {% load gtm facebook_connect %}
 {% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
@@ -32,7 +32,7 @@
   {% block opengraph %}{% endblock %}
 
   {% block styles %}
-    {% render_entrypoint 'main' 'css' %}
+    {% render_bundle 'main' 'css' %}
   {% endblock %}
 </head>
 <body>
@@ -44,7 +44,8 @@
 </div>
 
 {% block scripts %}
-  {% render_entrypoint 'main' 'js' %}
+  {% render_bundle 'polyfill' %}
+  {% render_bundle 'main' 'js' %}
   {% facebook_connect %}
 {% endblock %}
 </body>

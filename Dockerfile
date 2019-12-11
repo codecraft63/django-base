@@ -32,7 +32,7 @@ COPY package.json yarn.lock /app/
 
 RUN pip install --no-cache-dir --upgrade -q pip pipenv psycopg2
 RUN pipenv install --system --dev
-RUN yarn install --non-interactive --no-progress --ignore-optional
+RUN yarn install --non-interactive --no-progress --ignore-optional --check-files
 
 
 ## Final images

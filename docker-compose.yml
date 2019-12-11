@@ -1,11 +1,11 @@
 version: '3'
 services:
-    app:
-        image: "django_app"
+    web:
+        image: "app_web"
         build:
             context: .
             dockerfile: "Dockerfile"
-        command: "python manage.py runserver 0.0.0.0:8000"
+        command: "tail -f /dev/null"
         environment:
           DATABASE_URL: psql://postgres:password@db/app
         env_file:
@@ -21,8 +21,8 @@ services:
           - webpack
 
     webpack:
-        image: "django_app"
-        command: "yarn start"
+        image: "app_web"
+        command: "yarn dev"
         volumes:
             - ".:/app"
         tty: false
@@ -34,7 +34,7 @@ services:
             - "POSTGRES_USER=postgres"
             - "POSTGRES_PASSWORD=password"
         volumes:
-            - "db:/var/liv/postgresql/data"
+            - "db:/var/lib/postgresql/data"
         ports:
             - "5432:5432"
 
